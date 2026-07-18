@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Putt Pad — Mini Golf Scorecard</title>
+<meta name="description" content="A pocket scorecard for mini golf rounds. Offline, no ads, no account." />
+<meta name="theme-color" content="#1e5631" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Putt Pad" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div id="app">
+
+  <div class="brand">
+    <div class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="8" y1="3" x2="8" y2="16" stroke="#F6F1E4" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M8 3.6 L16 6.4 L8 8.6 Z" fill="#F4B740"/>
+        <ellipse cx="12" cy="19.5" rx="7" ry="1.6" fill="#123521"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      Putt Pad
+      <small id="brand-sub">Mini golf scorecard</small>
+    </div>
+  </div>
+
+  <div id="install-banner" class="install-banner hidden">
+    <span>Add Putt Pad to your home screen</span>
+    <button id="install-btn" class="btn btn-gold">Install</button>
+  </div>
+
+  <!-- ============ SETUP SCREEN ============ -->
+  <section id="screen-setup" class="screen">
+    <div class="card">
+      <div class="field">
+        <label for="course-name">Course name</label>
+        <input type="text" id="course-name" placeholder="e.g. Boardwalk Putt-Putt" maxlength="40" />
+      </div>
+
+      <div class="field">
+        <label>Holes</label>
+        <div class="toggle-row" id="holes-toggle">
+          <button class="toggle-btn active" data-holes="9" type="button">9 holes</button>
+          <button class="toggle-btn" data-holes="18" type="button">18 holes</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Par per hole <span style="text-transform:none;font-weight:500;">(tap to edit)</span></label>
+        <div class="par-grid" id="par-grid"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="field" style="margin-bottom:10px;">
+        <label>Players</label>
+        <div id="player-list"></div>
+        <div class="add-player-row">
+          <input type="text" id="new-player-name" placeholder="Player name" maxlength="18" />
+          <button id="add-player-btn" class="btn btn-outline" type="button">Add</button>
+        </div>
+      </div>
+    </div>
+
+    <button id="start-round-btn" class="btn btn-gold btn-block" type="button" disabled>
+      Start round
+    </button>
+  </section>
+
+  <!-- ============ PLAY SCREEN ============ -->
+  <section id="screen-play" class="screen hidden">
+
+    <div class="hole-header">
+      <div>
+        <div class="hole-label" id="play-course-name">Course</div>
+      </div>
+      <button class="icon-btn" id="menu-btn" title="Round menu" type="button">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="1.8" fill="#F6F1E4"/><circle cx="12" cy="12" r="1.8" fill="#F6F1E4"/><circle cx="19" cy="12" r="1.8" fill="#F6F1E4"/></svg>
+      </button>
+    </div>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" data-tab="hole" type="button">Play hole</button>
+      <button class="tab-btn" data-tab="card" type="button">Full card</button>
+    </div>
+
+    <!-- Hole-by-hole entry -->
+    <div id="tab-hole">
+      <div class="card">
+        <div class="hole-header">
+          <div class="hole-title">
+            <div>
+              <div class="hole-label">Hole</div>
+              <div class="hole-number" id="current-hole-number">1</div>
+            </div>
+          </div>
+          <div class="par-pill" id="current-hole-par">Par 3</div>
+        </div>
+
+        <div class="putting-line">
+          <svg viewBox="0 0 200 10" preserveAspectRatio="none">
+            <line x1="0" y1="5" x2="200" y2="5" stroke="currentColor" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/>
+          </svg>
+        </div>
+
+        <div class="hole-nav">
+          <button class="nav-btn" id="prev-hole-btn" type="button" aria-label="Previous hole">‹</button>
+          <div class="hole-dots" id="hole-dots"></div>
+          <button class="nav-btn" id="next-hole-btn" type="button" aria-label="Next hole">›</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="score-list" id="score-list"></div>
+      </div>
+    </div>
+
+    <!-- Full scorecard grid -->
+    <div id="tab-card" class="hidden">
+      <div class="card">
+        <div class="table-wrap">
+          <table class="card-table" id="scorecard-table"></table>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <div id="confirm-root"></div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
