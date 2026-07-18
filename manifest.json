@@ -1,5 +1,5 @@
 {
-  "name": "Putt Pad — Mini Golf Scorecard",
+  "name": "Putt Pad",
   "short_name": "Putt Pad",
   "description": "A pocket scorecard for mini golf rounds. Track strokes hole by hole, offline, no ads, no account.",
   "start_url": "./index.html",
