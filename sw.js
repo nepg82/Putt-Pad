@@ -1,7 +1,7 @@
 // Putt Pad service worker — caches the app shell so a round can be
 // scored with zero bars on the back nine.
 
-const CACHE_NAME = "putt-pad-v1";
+const CACHE_NAME = "putt-pad-v1.1";
 const APP_SHELL = [
   "./",
   "./index.html",
