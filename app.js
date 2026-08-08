@@ -427,6 +427,9 @@
         </div>
       </div>`;
     document.getElementById("confirm-cancel").addEventListener("click", closeConfirm);
+    document.getElementById("share-results").addEventListener("click", () => {
+        exportResults();
+    });
     document.getElementById("confirm-ok").addEventListener("click", () => {
       closeConfirm();
       onConfirm();
