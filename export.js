@@ -142,6 +142,23 @@
       tableTop + rowHeight + 37
     );
 
+let leaderId = null;
+let leaderTotal = Infinity;
+
+state.players.forEach((player) => {
+  const scores = state.scores[player.id] || [];
+  const played = scores.filter((score) => score != null);
+
+  if (played.length > 0) {
+    const total = played.reduce((sum, score) => sum + score, 0);
+
+    if (total < leaderTotal) {
+      leaderTotal = total;
+      leaderId = player.id;
+    }
+  }
+});
+    
     // Player rows
     state.players.forEach((player, playerIndex) => {
       const y = tableTop + rowHeight * (playerIndex + 2);
@@ -167,6 +184,11 @@
       ctx.font = "bold 21px sans-serif";
       ctx.textAlign = "left";
       ctx.fillText(player.name, 122, y + 37);
+
+if (state.players.length > 1 && player.id === leaderId) {
+  ctx.font = "22px sans-serif";
+  ctx.fillText("🏆", 122 + ctx.measureText(player.name).width + 12, y + 37);
+}
 
       let total = 0;
       let played = false;
