@@ -24,6 +24,8 @@
 
   let state = loadState();
 
+  window.getPuttPadState = () => state;
+
   function loadState() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -418,8 +420,9 @@
           <div class="hole-label">${escapeHtml(title)}</div>
           <p>${escapeHtml(message)}</p>
           <div class="confirm-actions">
-            <button class="btn btn-outline" id="confirm-cancel">Cancel</button>
-            <button class="btn btn-gold" id="confirm-ok">${escapeHtml(confirmLabel)}</button>
+              <button class="btn btn-outline" id="confirm-cancel">Cancel</button>
+              <button class="btn btn-outline" id="share-results">Share Results</button>
+              <button class="btn btn-gold" id="confirm-ok">${escapeHtml(confirmLabel)}</button>
           </div>
         </div>
       </div>`;
