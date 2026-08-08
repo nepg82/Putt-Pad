@@ -187,7 +187,7 @@ state.players.forEach((player) => {
 
 if (state.players.length > 1 && player.id === leaderId) {
   ctx.font = "22px sans-serif";
-  ctx.fillText("★", 122 + ctx.measureText(player.name).width + 12, y + 37);
+  ctx.fillText("🏆", 122 + ctx.measureText(player.name).width + 12, y + 37);
 }
 
       let total = 0;
